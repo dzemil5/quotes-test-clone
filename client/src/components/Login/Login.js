@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import axios from 'axios';
+import './Login.css';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const { isLoggedIn, setIsLoggedIn, setAccessToken } = useContext(AuthContext);
+
 
   useEffect(() => {
     const storedLoginStatus = localStorage.getItem('isLoggedIn');
@@ -15,12 +18,13 @@ const Login = () => {
     }
   }, []);
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios.post('http://localhost:8000/sessions', { username, password })
       .then((response) => {
         if (response.status === 200) {
-          const accessToken = response.data.accessToken; // Assuming the access token is returned in the response data
+          const accessToken = response.data.accessToken;
           setAccessToken(accessToken);
           setIsLoggedIn(true);
         } else {
@@ -32,11 +36,13 @@ const Login = () => {
       });
   };
 
+
   const handleLogout = () => {
     localStorage.setItem('isLoggedIn', 'false');
     setIsLoggedIn(false);
-    setAccessToken(null); // Clear the access token on logout
+    setAccessToken(null); 
   };
+
 
   return (
     <div className='login'>
@@ -44,7 +50,6 @@ const Login = () => {
       {isLoggedIn ? (
         <div>
           <p>Welcome, {username}!</p>
-          <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -67,5 +72,6 @@ const Login = () => {
     </div>
   );
 };
+
 
 export default Login;

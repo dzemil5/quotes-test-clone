@@ -3,14 +3,19 @@ import './App.css';
 import { AuthContext } from './components/Login/AuthContext';
 import QuoteList from './components/Quotes/QuoteList';
 import Login from './components/Login/Login';
+import Loading from './components/Loading/Loading';
 
 const App = () => {
-  const { isLoggedIn, accessToken } = useContext(AuthContext);
+  const { isLoggedIn, accessToken, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
       {isLoggedIn ? (
-        <QuoteList isLoggedIn={isLoggedIn} accessToken={accessToken} />
+        <QuoteList accessToken={accessToken} />
       ) : (
         <Login />
       )}
