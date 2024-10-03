@@ -1,0 +1,65 @@
+.quotecard {
+    display: grid;
+    background-color: #585c7c;
+    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-rows: 5fr 1fr;
+    width: 60vw;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.votecontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:5vh;
+    
+}
+
+.quotecontainer{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+    width:45vw;
+    height:12vh;
+    position:relative;
+    background-color: whitesmoke;
+    border-radius:20px;
+}
+
+  .quotecontainer .author {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    color:silver;
+    font-weight:bold;
+  }
+
+  .fas{
+    width:5vw;
+    height:2.5vh;
+    cursor:pointer;
+    opacity:75%;
+  }
+
+  .fas:hover{
+    opacity:100%;
+    color:white;
+    transition: 0.5s;
+  }
+
+  .votecontainer button{
+    background:none;
+    border:none;
+  }
+
+  .ratio{
+    font-weight: bold;
+    color:whitesmoke;
+  }
+
+  .percent{
+    font-weight: bold;
+  }

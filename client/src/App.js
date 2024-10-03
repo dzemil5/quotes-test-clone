@@ -1,24 +1,21 @@
 import React, { useContext } from 'react';
 import './App.css';
-
-
 import { AuthContext } from './components/Login/AuthContext';
 import QuoteList from './components/Quotes/QuoteList';
 import Login from './components/Login/Login';
 
 const App = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, accessToken } = useContext(AuthContext);
 
-  if (isLoggedIn) {
-    return (
-      <div>
-        <h1>Quotes</h1>
-        <QuoteList />
-      </div>
-    );
-  } else {
-    return <Login />;
-  }
+  return (
+    <div>
+      {isLoggedIn ? (
+        <QuoteList isLoggedIn={isLoggedIn} accessToken={accessToken} />
+      ) : (
+        <Login />
+      )}
+    </div>
+  );
 };
 
 export default App;

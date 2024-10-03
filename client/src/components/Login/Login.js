@@ -6,7 +6,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setAccessToken } = useContext(AuthContext);
 
   useEffect(() => {
     const storedLoginStatus = localStorage.getItem('isLoggedIn');
@@ -20,6 +20,8 @@ const Login = () => {
     axios.post('http://localhost:8000/sessions', { username, password })
       .then((response) => {
         if (response.status === 200) {
+          const accessToken = response.data.accessToken; // Assuming the access token is returned in the response data
+          setAccessToken(accessToken);
           setIsLoggedIn(true);
         } else {
           setError('Invalid username or password');
@@ -33,6 +35,7 @@ const Login = () => {
   const handleLogout = () => {
     localStorage.setItem('isLoggedIn', 'false');
     setIsLoggedIn(false);
+    setAccessToken(null); // Clear the access token on logout
   };
 
   return (
