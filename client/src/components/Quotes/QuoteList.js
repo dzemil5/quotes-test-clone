@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import QuoteCard from './QuoteCard';
-import { calculateVoteRatio, getVoteRatioColor } from './VoteUtils';
 import axios from 'axios';
 
 
